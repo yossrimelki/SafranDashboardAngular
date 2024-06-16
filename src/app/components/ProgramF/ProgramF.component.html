@@ -1,0 +1,45 @@
+<div *ngIf="error" class="notification">
+  <div class="notification-content">{{ error }}</div>
+  <button class="close-button" (click)="clearError()">x</button>
+</div>
+
+<br><br> <h2>Program Formation</h2><br><br><br>
+<table>
+  
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+    
+  </thead>
+  <tbody>
+    <tr *ngFor="let program of programs">
+      <td>{{ program.title }}</td>
+      <td>{{ program.description }}</td>
+      <td>
+        <button (click)="deleteProgram(program)">Delete</button>
+        <button class="edit-button" (click)="editProgram(program)">Edit</button>
+      </td>
+    </tr>
+    <!-- Form for adding a new program -->
+    <tr>
+      <td><input type="text" [(ngModel)]="newProgram.title" placeholder="Title"></td>
+      <td><input type="text" [(ngModel)]="newProgram.description" placeholder="Description"></td>
+      <td>
+        <button class="add-button" (click)="addProgram()">Add Program</button>
+       
+      </td>
+    </tr>
+    <!-- Form for editing a program -->
+    <tr *ngIf="editingProgram">
+      <td><input type="text" [(ngModel)]="editingProgram.title" placeholder="Title"></td>
+      <td><input type="text" [(ngModel)]="editingProgram.description" placeholder="Description"></td>
+      <td>
+        <button class="add-button" (click)="saveEditedProgram()">Save</button>
+        <button (click)="cancelEdit()">Cancel</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

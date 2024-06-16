@@ -1,0 +1,35 @@
+.container {
+    margin: 20px;
+  }
+  
+  button {
+    margin-right: 10px;
+  }
+  
+  label {
+    margin-right: 5px;
+  }
+  .notification {
+    position: relative;
+    background-color: #f44336; /* Red */
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .notification-content {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }

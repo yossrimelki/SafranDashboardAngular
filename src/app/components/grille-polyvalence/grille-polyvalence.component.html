@@ -1,0 +1,92 @@
+<div class="container">
+  <br><br> <h2>Grille Polyvalence</h2><br><br><br>
+  <div class="form-group row">
+    <label for="userSearch" class="col-sm-2 col-form-label">Search User Aleas:</label>
+    <div class="col-sm-10">
+      <input 
+        type="text" 
+        id="userSearch" 
+        class="form-control" 
+        placeholder="Search by Aleas" 
+        [formControl]="userSearchControl" 
+        (change)="filterUsers($event)">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="metierId" class="col-sm-2 col-form-label">Metier:</label>
+    <div class="col-sm-10">
+      <select id="metierId" formControlName="metierId" class="form-control" (change)="onMetierChange($event)">
+        <option value="" disabled selected>Select Metier</option>
+        <option *ngFor="let metier of metiers" [value]="metier.id">{{ metier.title }}</option>
+      </select>
+    </div>
+  </div>
+  <hr>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>ALEAS</th>
+          <th>Username</th>
+          <th>Metier Title</th>
+          <th>Niveau</th>
+          <th>PathFile</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let grillePolyvalence of grillePolyvalences">
+          <td>{{ grillePolyvalence.user.aleas }}</td>
+          <td>{{ grillePolyvalence.user.username }}</td>
+          <td>{{ grillePolyvalence.metier.title }}</td>
+          <td>{{ grillePolyvalence.niveau }}</td>
+          <td><a href="assets/{{ grillePolyvalence.filePath }}">{{ grillePolyvalence.filePath }}</a></td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-sm btn-info" (click)="getGrillePolyvalenceById(grillePolyvalence.id)">View</button>
+              <button class="btn btn-sm btn-warning" (click)="updateGrillePolyvalence(grillePolyvalence)">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteGrillePolyvalence(grillePolyvalence.id)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+  <h3>Add New Grille Polyvalence</h3>
+  <form [formGroup]="newGrillePolyvalenceForm" (ngSubmit)="addGrillePolyvalence()" class="form" enctype="multipart/form-data">
+    <div class="form-group row">
+      <label for="userId" class="col-sm-2 col-form-label">User:</label>
+      <div class="col-sm-10">
+        <select id="userId" formControlName="userId" class="form-control">
+          <option *ngFor="let user of filteredUsers" [value]="user.id">{{ user.aleas }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="metierId" class="col-sm-2 col-form-label">Metier:</label>
+      <div class="col-sm-10">
+        <select id="metierId" formControlName="metierId" class="form-control">
+          <option *ngFor="let metier of metiers" [value]="metier.id">{{ metier.title }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="niveau" class="col-sm-2 col-form-label">Niveau:</label>
+      <div class="col-sm-10">
+        <input type="number" id="niveau" formControlName="niveau" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="file" class="col-sm-2 col-form-label">File:</label>
+      <div class="col-sm-10">
+        <input type="file" (change)="onFileSelected($event)" formControlName="file">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10 offset-sm-2">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </form>
+</div>

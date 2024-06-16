@@ -1,0 +1,31 @@
+**navbar.component.html**
+```html
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Navbar brand -->
+  <a class="navbar-brand me-2" href="https://mdbgo.com/">
+    <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.webp" height="16" alt="" loading="lazy" style="margin-top: -1px;" />
+  </a>
+
+  <!-- Toggle button -->
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Collapsible wrapper -->
+  <div class="collapse navbar-collapse" [ngClass]="{ 'how': isNavbarOpen }">
+    <!-- Left links -->
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Dashboard</a>
+      </li>
+    </ul>
+    <!-- Left links -->
+
+    <div class="d-flex align-items-center">
+      <button *ngIf="!jwtService.isLoggedIn()" type="button" class="btn btn-link px-3 me-2" [routerLink]="['/login']">
+        Login
+      </button>
+    </div>
+  </div>
+  <!-- Collapsible wrapper -->
+</nav>

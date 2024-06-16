@@ -1,0 +1,71 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  button {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #da190b;
+  }
+  .add-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .add-button:hover {
+    background-color: darkgreen;
+  }
+  .edit-button {
+    background-color: orange;
+  }
+  .error-message {
+    color: red;
+    font-size: 12px;
+  }
+  .notification {
+    position: relative;
+    background-color: #f44336; /* Red */
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .notification-content {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+    

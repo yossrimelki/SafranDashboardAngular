@@ -1,0 +1,51 @@
+<div class="container">
+  <h2>Users</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Role</th>
+        <th>Aleas</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.aleas }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="editUser(user)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="isEditing" class="edit-form">
+    <h3>Edit User</h3>
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <input type="text" class="form-control" id="role" [(ngModel)]="editedUser.role">
+    </div>
+    <div class="form-group">
+      <label for="aleas">Aleas:</label>
+      <input type="text" class="form-control" id="aleas" [(ngModel)]="editedUser.aleas">
+    </div>
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" class="form-control" id="username" [(ngModel)]="editedUser.username">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="editedUser.email">
+    </div>
+    <button class="btn btn-success" (click)="updateUser()">Update</button>
+    <button class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+  </div>
+</div>

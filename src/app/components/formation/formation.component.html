@@ -1,0 +1,69 @@
+
+<br><br> <h2>Formations</h2><br>
+
+
+<table class="dashboard-table">
+  <!-- Table Header -->
+  <thead>
+    <tr>
+      <th>Ecole</th>
+      <th>Title</th>
+      <th>Fabrication</th>
+      <th>Critère Qualité</th>
+      <th>Program F</th>
+      <th>Metiers</th> <!-- Added column for metiers -->
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <!-- Table Body -->
+  <tbody>
+    <!-- Adding a new formation -->
+    <tr>
+      <td><input type="checkbox" [(ngModel)]="newFormation.ecole"> Ecole</td>
+      <td><input type="text" [(ngModel)]="newFormation.title" placeholder="Title"></td>
+      <td><input type="text" [(ngModel)]="newFormation.fabrication" placeholder="Fabrication"></td>
+      <td><input type="text" [(ngModel)]="newFormation.critereQualite" placeholder="Critère Qualité"></td>
+      <td>
+        <select [(ngModel)]="newFormation.programF" name="programF">
+          <option *ngFor="let programF of programFs" [ngValue]="programF">{{ programF.title }}</option>
+        </select>
+      </td>
+      <td>
+        <div *ngFor="let metier of metiers">
+          <input type="checkbox" [checked]="isMetierSelected1(metier)" (change)="toggleMetierSelection(metier)"> {{ metier.title }}
+
+        </div>
+      </td>
+      <td><button class="add-button" (click)="addFormation()">Add</button></td>
+    </tr>
+    <!-- Editing an existing formation -->
+    <tr *ngFor="let formation of formations; let i = index; trackBy: trackById" [class.editing]="editingIndex === i">
+      <!-- Columns for each property -->
+      <td><input type="checkbox" [(ngModel)]="formation.ecole"> Ecole</td>
+      <td><input type="text" [(ngModel)]="formation.title" placeholder="Title" [disabled]="editingIndex === i"></td>
+      <td><input type="text" [(ngModel)]="formation.fabrication" placeholder="Fabrication" [disabled]="editingIndex === i"></td>
+      <td><input type="text" [(ngModel)]="formation.critereQualite" placeholder="Critère Qualité" [disabled]="editingIndex === i"></td>
+      <td>
+        <select [(ngModel)]="formation.programF" name="programF" [disabled]="editingIndex === i">
+          <option *ngFor="let programF of programFs" [ngValue]="programF">{{ programF.title }}</option>
+        </select>
+      </td>
+      <!-- Column for metiers -->
+      <td>
+        <div *ngFor="let metier of metiers">
+          <input type="checkbox" [checked]="isMetierSelected(metier, formation)" (change)="toggleMetierSelection(metier)">
+
+
+          {{ metier.title }}
+        </div>
+      </td>
+      <!-- Action buttons -->
+      <td>
+        <button class="edit-button" *ngIf="editingIndex !== i" (click)="editFormation(i)">Edit</button>
+        <button class="save-button" *ngIf="editingIndex === i" (click)="saveEditedFormation(formation)">Save</button>
+        <button class="cancel-button" *ngIf="editingIndex === i" (click)="cancelEdit()">Cancel</button>
+        <button class="delete-button" (click)="deleteFormation(formation)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
